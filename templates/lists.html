@@ -1,0 +1,55 @@
+{% extends "base_normal.html" %}
+{% block content %}
+<div class="table-container">
+    <table id="customers_table" style="width:100%" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Body Temp</th>
+                <th>Company</th>
+                <th>Phone</th>
+                <th>Visited Country</th>
+                <th>Quarantine</th>
+                <th>Contact</th>
+                <th>Fever</th>
+                <th>Cough</th>
+                <th>Sore Throat</th>
+                <th>Muscle Pain</th>
+                <th>Shortness Breath</th>
+                <th>Breathing Difficulty</th>
+                <th>Vomiting</th>
+                <th>Diarrhoea</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer['register_date'] }}</td>
+                <td>{{ customer['cname'] }}</td>
+                <td>{{ customer['email'] }}</td>
+                <td>{{ customer['body_temp'] }}°C</td>
+                <td>{{ customer['company'] }}</td>
+                <td>{{ customer['phoneNum'] }}</td>
+                <td>
+                    {% for country in customer['visited'].split(',') %}
+                    {{ country }}<br>
+                    {% endfor %}
+                </td>
+                <td>{{ customer['quarantine'] }}</td>
+                <td>{{ customer['contact'] }}</td>
+                <td>{{ customer['fever'] }}</td>
+                <td>{{ customer['cough'] }}</td>
+                <td>{{ customer['sore_throat'] }}</td>
+                <td>{{ customer['muscle_pain'] }}</td>
+                <td>{{ customer['shortness_breath'] }}</td>
+                <td>{{ customer['breathing_difficulty'] }}</td>
+                <td>{{ customer['vomiting'] }}</td>
+                <td>{{ customer['diarrhoea'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

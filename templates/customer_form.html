@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Health Declaration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/customer_form.css') }}">
+  
+  </head>
+
+<body>
+
+  <div class="container form-container">
+    <form action="/register_customer_post" method="post" class="needs-validation" novalidate>
+      <div class="form-group col-md-5 row" style="margin: auto;">
+        <label for="sel_lang col-md-4 col-form-label" style="padding:8px;">English/中文: </label>
+        <select class="form-control col-md-8" id="sel_lang" name="sel_lang">
+          <option value="china" {% if lang=='china' %}selected{% endif %}>中文</option>
+          <option value="english" {% if lang=='english' %}selected{% endif %}>English</option>
+        </select>
+      </div>
+      <div class="row">
+        <!-- <div class="col col-md-9">
+          <label for="qrcode">QRCode:</label>
+          <input type="text" class="form-control" id="qrcode" name="qrcode" value={{qrcode}} readonly>
+        </div> -->
+        <div class="col col-md-3">
+          <label for="qrcode">{% if lang=='english' %}Body Templature:{% endif %}{% if lang=='china' %}体温:{% endif %}</label>
+          <div style="display: flex;">
+            <input type="text" class="form-control" id="body_temp" name="body_temp" value={{body_temp}} readonly>
+            <input type="hidden" class="form-control" id="body_temp_decoder" name="body_temp_decoder" value={{body_temp_decoder}}>
+            <span style="padding: 7px 0;">°C</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="cname">{% if lang=='english' %}Name:{% endif %}{% if lang=='china' %}名称:{% endif %}</label>
+          <input type="text" class="form-control" id="cname" name="cname" required>
+        </div>
+        <div class="col">
+          <label for="company">{% if lang=='english' %}Company:{% endif %}{% if lang=='china' %}公司:{% endif %}</label>
+          <input type="text" class="form-control" id="company" name="company" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="phoneNum">{% if lang=='english' %}Phone Number:{% endif %}{% if lang=='china' %}电话号码:{% endif %}</label>
+          <input type="text" class="form-control" id="phoneNum" name="phoneNum"
+            required>
+        </div>
+        <div class="col">
+          <label for="email">{% if lang=='english' %}Email:{% endif %}{% if lang=='china' %}电邮:{% endif %}</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="visited">{% if lang=='english' %}Please list the countries and cities that you visited in the past 14 days:{% endif %}{% if lang=='china' %}請列出在過去十四日內，您到過的城市:{% endif %}</label>
+        <input type="text" class="form-control" id="visited" name="visited" required>
+      </div>
+      <div class="form-group">
+        <label>{% if lang=='english' %}Are you undergoing Compulsory Quarantine Order asrequired by HKSAR Department of Health?:{% endif %}{% if lang=='china' %}您是否需要按照香港特別行政區政府衛生署的指示接受強制隔離檢疫？:{% endif %}</label>
+        <div class="text-center">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="quarantine_T" value="true" name="quarantine" class="custom-control-input" checked>
+            <label class="custom-control-label" for="quarantine_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="quarantine_F" value="false" name="quarantine" class="custom-control-input">
+            <label class="custom-control-label" for="quarantine_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>{% if lang=='english' %}Have you had contact with any suspented or confirmed novel coronavirus infectedpatient in the past 14 days?:{% endif %}{% if lang=='china' %}在過去十四日，您有否與懷疑或證實感染新型冠狀病毒肺炎個案的病人接觸？:{% endif %}</label>
+        <div class="text-center">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="contact_T" value="true" name="contact" class="custom-control-input">
+            <label class="custom-control-label" for="contact_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="contact_F" value="false" name="contact" class="custom-control-input" checked>
+            <label class="custom-control-label" for="contact_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+          </div>
+        </div>
+      </div>
+      <p>{% if lang=='english' %}Please confirm if you have the following symptom:{% endif %}{% if lang=='china' %}請確認是否有以下症狀:{% endif %}</p>
+      <div class="row">
+        <div class="col">
+          <label>{% if lang=='english' %}Fever:{% endif %}{% if lang=='china' %}發燒:{% endif %}</label>
+          <div class="">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="fever_H" value="true" name="fever" class="custom-control-input">
+              <label class="custom-control-label" for="fever_H">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+            </div>
+            <!-- <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="fever_L" name="fever" class="custom-control-input">
+              <label class="custom-control-label" for="fever_L">Low</label>
+            </div> -->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="fever_F" value="false" name="fever" class="custom-control-input" checked>
+              <label class="custom-control-label" for="fever_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>{% if lang=='english' %}Cough:{% endif %}{% if lang=='china' %}咳嗽:{% endif %}</label>
+            <div class="">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="cough_T" value="true" name="cough" class="custom-control-input">
+                <label class="custom-control-label" for="cough_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="cough_F" value="false" name="cough" class="custom-control-input" checked>
+                <label class="custom-control-label" for="cough_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>{% if lang=='english' %}Sore throat:{% endif %}{% if lang=='china' %}喉嚨痛:{% endif %}</label>
+        <div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sore_throat_T" value="true" name="sore_throat" class="custom-control-input">
+            <label class="custom-control-label" for="sore_throat_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sore_throat_F" value="false" name="sore_throat" class="custom-control-input" checked>
+            <label class="custom-control-label" for="sore_throat_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+          </div>
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>{% if lang=='english' %}Muscle Pain:{% endif %}{% if lang=='china' %}肌肉痛:{% endif %}</label>
+            <div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="muscle_pain_T" value="true" name="muscle_pain" class="custom-control-input">
+                <label class="custom-control-label" for="muscle_pain_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="muscle_pain_F" value="false" name="muscle_pain" class="custom-control-input" checked>
+                <label class="custom-control-label" for="muscle_pain_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>{% if lang=='english' %}Shortness of breath:{% endif %}{% if lang=='china' %}氣喘:{% endif %}</label>
+        <div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="shortness_breath_T" value="true" name="shortness_breath" class="custom-control-input">
+            <label class="custom-control-label" for="shortness_breath_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="shortness_breath_F" value="false" name="shortness_breath" class="custom-control-input" checked>
+            <label class="custom-control-label" for="shortness_breath_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+          </div>
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>{% if lang=='english' %}Breathing Difficulty:{% endif %}{% if lang=='china' %}呼吸困難:{% endif %}</label>
+            <div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="breathing_difficulty_T" value="true" name="breathing_difficulty" class="custom-control-input">
+                <label class="custom-control-label" for="breathing_difficulty_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="breathing_difficulty_F" value="false" name="breathing_difficulty" class="custom-control-input" checked>
+                <label class="custom-control-label" for="breathing_difficulty_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>{% if lang=='english' %}Vomiting:{% endif %}{% if lang=='china' %}嘔吐:{% endif %}</label>
+        <div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="vomiting_T" name="vomiting" value="true" class="custom-control-input">
+            <label class="custom-control-label" for="vomiting_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="vomiting_F" name="vomiting" value="false" class="custom-control-input" checked>
+            <label class="custom-control-label" for="vomiting_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+          </div>
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>{% if lang=='english' %}Diarrhoea:{% endif %}{% if lang=='china' %}腹瀉:{% endif %}</label>
+            <div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="diarrhoea_T" name="diarrhoea" value="true" class="custom-control-input">
+                <label class="custom-control-label" for="diarrhoea_T">{% if lang=='english' %}Yes{% endif %}{% if lang=='china' %}是{% endif %}</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="diarrhoea_F" name="diarrhoea" value="false" class="custom-control-input" checked>
+                <label class="custom-control-label" for="diarrhoea_F">{% if lang=='english' %}No{% endif %}{% if lang=='china' %}不{% endif %}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+        <label class="custom-control-label" for="customCheck1">{% if lang=='english' %}I hear by declare that all the information given above is true and correct.{% endif %}{% if lang=='china' %}我已閱知本申報表所列事項，並保證以上內容正確屬實.{% endif %}</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">{% if lang=='english' %}Submit{% endif %}{% if lang=='china' %}提交{% endif %}</button>
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/customer_form.js') }}"></script>
+</body>
+
+</html>

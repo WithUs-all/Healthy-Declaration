@@ -1,0 +1,20 @@
+<p>Dear {{ data.cname }},</p>
+<p>Your register result is following:</p>
+<p>Body Templature: {{data.body_temp}}</p>
+<p>Name: {{data.cname}}</p>
+<p>Company: {{data.company}}</p>
+<p>PhoneNumber: {{data.phoneNum}}</p>
+<p>Email: {{data.email}}</p>
+<p>Countries and cities that you visited in the past 14 days: </p>
+<p>{{data.visited}}</p>
+<p>Undergoing Compulsory Quarantine Order asrequired by HKSAR Department of Health: {% if data.quarantine == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Contact with any suspented or confirmed novel coronavirus infectedpatient in the past 14 days: {% if data.contact == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Fever: {% if data.fever == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Cough: {% if data.cough == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Sore throat: {% if data.sore_throat == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Muscle Pain: {% if data.muscle_pain == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Shortness of breath: {% if data.shortness_breath == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Breathing Difficulty: {% if data.breathing_difficulty == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Vomiting: {% if data.vomiting == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Diarrhoea: {% if data.diarrhoea == 'true' %}Yes {%else%}No{%endif%}</p>
+<p>Sincerely</p>

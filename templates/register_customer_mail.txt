@@ -1,0 +1,22 @@
+Dear {{ data.cname }},
+Your register result is following:
+Body Templature: {{data.body_temp}}
+Name: {{data.cname}}
+Company: {{data.company}}
+PhoneNumber: {{data.phoneNum}}
+Email: {{data.email}}
+Countries and cities that you visited in the past 14 days:
+{{data.visited}}
+Undergoing Compulsory Quarantine Order asrequired by HKSAR Department of Health: {% if data.quarantine == 'true' %}Yes {%else%}No{%endif%}
+Contact with any suspented or confirmed novel coronavirus infectedpatient in the past 14 days: {% if data.contact == 'true' %}Yes {%else%}No{%endif%}
+Fever: {% if data.fever == 'true' %}Yes {%else%}No{%endif%}
+Cough: {% if data.cough == 'true' %}Yes {%else%}No{%endif%}
+Sore throat: {% if data.sore_throat == 'true' %}Yes {%else%}No{%endif%}
+Muscle Pain: {% if data.muscle_pain == 'true' %}Yes {%else%}No{%endif%}
+Shortness of breath: {% if data.shortness_breath == 'true' %}Yes {%else%}No{%endif%}
+Breathing Difficulty: {% if data.breathing_difficulty == 'true' %}Yes {%else%}No{%endif%}
+Vomiting: {% if data.vomiting == 'true' %}Yes {%else%}No{%endif%}
+Diarrhoea: {% if data.diarrhoea == 'true' %}Yes {%else%}No{%endif%}
+
+Sincerely
+
