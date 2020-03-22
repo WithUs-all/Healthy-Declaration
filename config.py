@@ -1,17 +1,17 @@
 import os
 
-DB_USERNAME = 'root'
-DB_PASSWORD = 'root'
-DB_NAME = 'healthdeclaration'
-DB_HOST = 'localhost'
+DB_USERNAME = 'dbusername'
+DB_PASSWORD = 'dbpassword'
+DB_NAME = 'dbname'
+DB_HOST = 'dbhost'
 DB_PORT = '3306'
 
 MAIL_SERVER = 'smtp-relay.sendinblue.com'
 MAIL_PORT = 587
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
-MAIL_USERNAME = 'mrbs@hybotic.com'
-MAIL_PASSWORD = '3BhFbZXPMxdROKEj'
+MAIL_USERNAME = 'myemail.com'
+MAIL_PASSWORD = 'myemail password'
 
 def db_url():
-    return 'mysql+pymysql://root:root@localhost:3306/healthdeclaration'
+    return 'mysql+pymysql://' + DB_USERNAME + ':' + DB_PASSWORD + '@' + DB_HOST + ':' + DB_PORT + '/' + DB_NAME
