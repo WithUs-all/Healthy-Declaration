@@ -18,4 +18,4 @@
     (after entering into project folder)
         windows: python app.py
         linux: (sudo) python3 app.py
-Now that's all! please input localhost:5000 in browser and then you can see this project home page.
+Now that's all! please input 'localhost' as browser url and then you can see this project home page.
