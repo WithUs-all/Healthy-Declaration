@@ -4,8 +4,3 @@ flask-login
 pyqrcode
 flask-mail
 
-
-
-
-pymysql
-
